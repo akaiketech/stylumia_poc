@@ -1,0 +1,8 @@
+.env
+__pycache__/
+temp_folder
+**/*.parquet
+**/*.json
+**/*.csv
+env/
+no_commit*
