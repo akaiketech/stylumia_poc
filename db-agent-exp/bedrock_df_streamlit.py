@@ -14,10 +14,6 @@ import os
 load_dotenv("../.env")
 set_llm_cache(SQLiteCache(database_path="./temp_folder/llm_cache.sqlite.db"))
 
-# file = open("../.env")
-# st.write(file.read())
-# file.close()
-
 SUPPORTED_TABLES = [
     "outdoor_lighting_products_renamed_zipcode"
     # "customer_support",
@@ -25,7 +21,12 @@ SUPPORTED_TABLES = [
     # "stylumia_all_data"
 ]
 
-st.set_page_config(layout="wide")
+# Set up page title and layout
+st.set_page_config(page_title="Stylumia Sparks", layout="wide")
+
+
+
+
 
 
 @st.cache_resource
@@ -41,11 +42,18 @@ def load_table_data(selected_tables):
 
 
 def main():
-    st.title("Analytics Chat App")
+    # st.title("Analytics Chat App")
+
+    # prompt = st.chat_input("Ask a question:")
+    # st.write(dir(prompt))
+
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
+
+
     with st.sidebar:
+        st.image("data/stylumia_transparent.png", width=150)  # Add your logo file path
         st.write("Table Selection")
         selected_tables = st.multiselect(
             "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
@@ -67,6 +75,29 @@ def main():
     prompt = st.chat_input("Ask a question:")
 
     
+    if len(st.session_state.messages) == 0:
+        placeholder = st.empty()  # Placeholder to hold and later clear the welcome text
+        with placeholder.container():
+            st.title("Hi! I'm Stylumia Sparks.")
+            st.subheader("What can I do for you today?")
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                if st.button("give me lay of the land"):
+                    prompt = "give me lay of the land"
+                if st.button("what is my assortment mix"):
+                    prompt = "what is my assortment mix"
+                    
+            with col2:
+                if st.button("where am i under indexed compared to my competitor"):
+                    prompt = "where am i under indexed compared to my competitor"
+                if st.button("What are my top performing type across Rural US"):
+                    prompt = "What are my top performing type across Rural US"
+    else:
+        placeholder = st.empty()
+
+
+
     if prompt:
         with st.chat_message("user"):
             st.write(prompt)

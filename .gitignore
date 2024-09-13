@@ -2,6 +2,8 @@
 __pycache__/
 temp_folder
 data
+*.zip
+
 **/*.parquet
 **/*.json
 **/*.csv
