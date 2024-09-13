@@ -704,6 +704,7 @@ class FileAgent:
         ** Where to refresh/reduce**: This is same as the attributes that are under indexed.
         ** Where to monitor**: The common attributes among Retailer's Top performing attributes & the Market's Under Performing attributes. The idea is to identify the attributes where the retailer is doing well but not the market.
         ** Where to rationalise**: The common attributes among Retailer's Under performing attributes & the Market's Under Performing attributes. The idea is to identify the attributes where both the retailer,  market are not doing well
+    
 
         ### Ask questions for more clarity:Ask the required questions if the provided information is insufficient for answering
 
@@ -720,12 +721,14 @@ class FileAgent:
         * Incase of a general question do 2 analysis one for A(me) and one for the market
         * avoid giving generic responses
         * Plot charts where necessary only and not always
+        * whenever the question is asked about zip code and locations, store the result in the variable named df_map (add lat , long , size and colour based on zip code.), i will be directly using it with `st.map`.
+
         <<<
         Table Info:
         ========
         {table_info}
 
-
+`
         Python environment State
         ```
         {python_code_history}
