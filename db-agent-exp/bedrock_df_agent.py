@@ -552,7 +552,7 @@ class FileAgent:
 
     @traceable
     def generate_streaming_response(self, question: str) -> Generator:
-        question = f"I am a retailer named Lowe's and need help with analysis on assortment related data\nQuestion: {question}"
+        question = f"I am a retailer named A and need help with analysis on assortment related data\nQuestion: {question}"
         self.state["status"] = "processing"
         self.state["original_question"] = question
         self.state["question"] = question
@@ -676,17 +676,17 @@ class FileAgent:
         top_seller_percentage = top_seller_count_of_category_of_retailer/total_top_seller_products_of_retailer
 
         #### Follow the below code snippet for reference to acheive this
-        df_lowes = df[df['Retailer'] == "Lowe's"]
+        df_a = df[df['Retailer'] == "A"]
         # Create pivot tables for each attribute
-        type_pivot = df_lowes.groupby('Type').size().reset_index(name="Lowe's")
+        type_pivot = df_a.groupby('Type').size().reset_index(name="A")
         # Calculate the percentage of total products for each attribute category
-        type_pivot["Lowe's (%)"] = (type_pivot["Lowe's"] / df_lowes.shape[0]) * 100
-        # Filter the dataframe for 'Lowe's' and 'Top Seller' products
-        df_lowes_top_seller = df_lowes[df_lowes['Top Seller'] == 'Yes']
+        type_pivot["A (%)"] = (type_pivot["A"] / df_a.shape[0]) * 100
+        # Filter the dataframe for 'A' and 'Top Seller' products
+        df_a_top_seller = df_a[df_a['Top Seller'] == 'Yes']
         # Create pivot tables for each attribute
-        type_pivot_top_seller = df_lowes_top_seller.groupby('Type').size().reset_index(name="Top Seller Lowe's")
+        type_pivot_top_seller = df_a_top_seller.groupby('Type').size().reset_index(name="Top Seller A")
         # Calculate the percentage of top seller products for each attribute category
-        type_pivot_top_seller["Top Seller Lowe's (%)"] = (type_pivot_top_seller["Top Seller Lowe's"] / df_lowes_top_seller.shape[0]) * 100
+        type_pivot_top_seller["Top Seller A (%)"] = (type_pivot_top_seller["Top Seller A"] / df_a_top_seller.shape[0]) * 100
         Ensure that the output includes the count, percentage of total products, and percentage of top seller products for each retailer.
 
         **Assortment Across key Attributes:** Generate the individual assortments across the attributes - Type, Color Changing, Power Source and concatenate all the pivot tables and provide me a concatenated data
@@ -707,7 +707,7 @@ class FileAgent:
 
         ### Ask questions for more clarity:Ask the required questions if the provided information is insufficient for answering
 
-        Lowes/Lowe's is present as "Lowe's" in "Retailer" column in the table
+        
         <<<
         Other Important Instructions
         >>>
@@ -717,7 +717,7 @@ class FileAgent:
         * Never ever give potential areas of improvements or recommendations , till asked
             * If specifically asked then refrain from using exact figures, use top sellers percent as benchmark and avoid speculative suggestion
             * always give directional advice instead of something like (increase sku by 7-10 items/10 percent increase)
-        * Incase of a general question do 2 analysis one for Lowe's(me) and one for the market
+        * Incase of a general question do 2 analysis one for A(me) and one for the market
         * avoid giving generic responses
         * Plot charts where necessary only and not always
         <<<

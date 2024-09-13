@@ -1,6 +1,7 @@
 .env
 __pycache__/
 temp_folder
+data
 **/*.parquet
 **/*.json
 **/*.csv

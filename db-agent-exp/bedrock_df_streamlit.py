@@ -9,12 +9,17 @@ from dotenv import load_dotenv
 from pathlib import Path
 from langchain_community.cache import SQLiteCache
 from langchain.globals import set_llm_cache
+import os
 
 load_dotenv("../.env")
-# set_llm_cache(SQLiteCache(database_path="./temp_folder/llm_cache.sqlite.db"))
+set_llm_cache(SQLiteCache(database_path="./temp_folder/llm_cache.sqlite.db"))
+
+# file = open("../.env")
+# st.write(file.read())
+# file.close()
 
 SUPPORTED_TABLES = [
-    "outdoor_lighting_products"
+    "outdoor_lighting_products_renamed_zipcode"
     # "customer_support",
     # "product_category_sku_analysis",
     # "stylumia_all_data"
