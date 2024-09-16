@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
 import json
 from bedrock_df_agent import DataFrameMetadataVectorRetriever, FileAgent
@@ -24,6 +25,20 @@ SUPPORTED_TABLES = [
 # Set up page title and layout
 st.set_page_config(page_title="Stylumia Sparks", layout="wide")
 
+
+
+
+
+# df_map = pd.DataFrame(
+#     {
+#         "col1": 41.9481,
+#         "col2": -83.4003,
+#         "col3": 10000,
+#         "col4": np.random.rand(1, 4).tolist(),
+#     }
+# )
+
+# st.map(df_map, latitude="col1", longitude="col2", size="col3", color="col4")
 
 
 
@@ -78,8 +93,26 @@ def main():
     if len(st.session_state.messages) == 0:
         placeholder = st.empty()  # Placeholder to hold and later clear the welcome text
         with placeholder.container():
-            st.title("Hi! I'm Stylumia Sparks.")
-            st.subheader("What can I do for you today?")
+
+            st.title("")
+            col001, col002, col003 = st.columns([3.5,4,1])
+            with col002:
+                st.title("✨")
+
+
+            col01, col02, col03 = st.columns([2,4,1])
+            with col02:
+                st.title("Hi! I'm Stylumia Sparks.")
+            
+            col11, col12, col13 = st.columns([2,4,1])
+            with col12:
+                st.subheader("What can I do for you today?")
+
+            # Vertical space
+            st.title("")
+            st.title("")
+
+
             col1, col2 = st.columns(2)
             
             with col1:

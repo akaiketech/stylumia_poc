@@ -721,7 +721,16 @@ class FileAgent:
         * Incase of a general question do 2 analysis one for A(me) and one for the market
         * avoid giving generic responses
         * Plot charts where necessary only and not always
-        * whenever the question is asked about zip code and locations, store the result in the variable named df_map (add lat , long , size and colour based on zip code.), i will be directly using it with `st.map`.
+        * whenever the question is asked about zip code , locations or store in that case create dataframe named df_map ,coloumns of df_map = [latitude , longitude , marker_size and marker_colour] its values would be based on zip code.It will be directly used by `st.map`, make sure values properly represent analysis.
+        
+        <<<
+        latitude and longitude corresponding to diffrent zip codes
+
+        zipcode , latitude , longitude
+        48162 , 41.9481 , -83.4003
+        63111 , 38.5582 , -90.25004
+        49418 , 42.8737 , -85.7769
+        >>>
 
         <<<
         Table Info:
