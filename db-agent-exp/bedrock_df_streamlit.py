@@ -136,7 +136,7 @@ def main():
     """
 
     with st.sidebar:
-        st.image("data/stylumia_transparent.png", width=150)  # Add your logo file path
+        st.image("data/logo-cropped.png", width=150)  # Add your logo file path
         st.write("Table Selection")
         selected_tables = st.multiselect(
             "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
@@ -154,7 +154,34 @@ def main():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+    st.markdown("""
+    <style>
+    /* Adjust the chat input box dimensions */
+    div[data-testid="stChatInput"] {
+        height: 67px;
+        width: 1200px;
+        position: relative;
+    }
+    
+    /* Style the chat input field */
+    div[data-testid="stChatInput"] input {
+        height: 100%;
+        width: calc(100% - 40px); /* Adjust width to leave space for the arrow */
+        padding-right: 40px; /* Padding to ensure text doesn't overlap with arrow */
+    }
 
+    /* Style the chat input enter arrow */
+    div[data-testid="stChatInput"] svg {
+        position: absolute;
+        right: 40px; /* Adjust as needed to position inside the box */
+        top: 50%;
+        transform: translateY(-50%);
+        fill: #60a8ff; /* Arrow color */
+        width: 24px; /* Adjust size as needed */
+        height: 24px; /* Adjust size as needed */
+    }
+    </style>
+    """, unsafe_allow_html=True)
     prompt = st.chat_input("Ask a question:")
 
     st.markdown("""
@@ -200,14 +227,20 @@ text-color:green;
             col1, col2 = st.columns(2)
             st.markdown("""
 <style>.element-container:has(#button-after) + div button {
- height:110px;
- font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-text-size:20px;
-  display:flex;
-  width: 570px;
-  margin-left:75px;
-background-color:#e5ecf6;
+  width: 411px;
+    height: 73px;
+    border-radius: 10px;
+    border: 1px solid rgba(124, 124, 150, 0.1);
+    background: rgba(124, 124, 150, 0.06);
+    color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    opacity: 0.8;
                       
  }</style>""", unsafe_allow_html=True)
 
@@ -337,6 +370,7 @@ background-color:#e5ecf6;
                     }
                 )
                 # st.write(st.session_state.messages)  : Need to reduce the size of input going into it
+    # st.write("Stylumia works based on your data preferences.")
 
 if __name__ == "__main__":
     main()
