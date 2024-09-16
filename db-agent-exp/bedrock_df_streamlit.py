@@ -10,6 +10,9 @@ from dotenv import load_dotenv
 from pathlib import Path
 from langchain_community.cache import SQLiteCache
 from langchain.globals import set_llm_cache
+import streamlit as st
+import streamlit.components.v1 as components
+
 import os
 
 load_dotenv("../.env")
@@ -41,6 +44,46 @@ st.set_page_config(page_title="Stylumia Sparks", layout="wide")
 # st.map(df_map, latitude="col1", longitude="col2", size="col3", color="col4")
 
 
+def custom_button(label, color, width=110, height=40):
+    # Apply custom CSS to style the button
+    button_style = f"""
+    <style>
+    .custom-button {{
+        background-color: {color};
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        text:center;
+        align-items:center;
+        justify-content:center;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        width: {width}px; /* Set custom width */
+        height: {height}px; /* Set custom height */
+        line-height: {height}px; /* Center text vertically */
+        text-align: center; /* Center text horizontally */
+    }}
+    </style>
+    """
+    # Create a custom button with the specified style
+    button_html = f"""
+    {button_style}
+    <button class="custom-button">{label}</button>
+    """
+    
+    # Display the button and handle the click event
+    if st.markdown(button_html, unsafe_allow_html=True):
+        return False
+    return False
+
+
+
+
 
 
 
@@ -66,6 +109,31 @@ def main():
         st.session_state.messages = []
 
 
+    st.markdown(
+    """
+    <style>
+    /* Sidebar background color */
+    [data-testid="stSidebar"] {
+        background-color: #281d36;  /* Change this to the color you want */
+    }
+
+    /* Sidebar text color */
+    [data-testid="stSidebar"] * {
+        color: #FFFFFF;  /* Change this to the text color you want */
+    }
+
+    /* Sidebar header styling  */
+    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
+        color: #32cd32;  /* Example: Change header text color to Tomato */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+    svg ="""<div>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 526 526" width="526" height="526" preserveAspectRatio="xMidYMid slice" style="display:flex; align-item:center; justify-content:center; width: 30%; height: 30%;margin-left:-40px; transform: translate3d(0px, 0px, 0px); content-visibility: visible;"><defs><clipPath id="__lottie_element_14"><rect width="526" height="526" x="0" y="0"></rect></clipPath><clipPath id="__lottie_element_16"><path d="M0,0 L526,0 L526,526 L0,526z"></path></clipPath></defs><g clip-path="url(#__lottie_element_14)"><g clip-path="url(#__lottie_element_16)" transform="matrix(1,0,0,1,155,118)" opacity="0.9763476471263042" style="display: block;"><g transform="matrix(1,0,0,1,0,0)" opacity="0.9763476471263042" style="display: block;"><path fill="rgb(255,255,255)" fill-opacity="0" d=" M0,0 C0,0 216,0 216,0 C216,0 216,290 216,290 C216,290 0,290 0,290 C0,290 0,0 0,0z"></path></g><g transform="matrix(1,0,0,1,0,0)" opacity="1" style="display: block;"><path fill="rgb(213,29,137)" fill-opacity="1" d=" M209.74000549316406,135.9600067138672 C157.5500030517578,116.66999816894531 136.4199981689453,58.31999969482422 117.05999755859375,6.25 C113.97000122070312,-2.0799999237060547 102.02999877929688,-2.0799999237060547 98.94000244140625,6.25 C79.5999984741211,58.31999969482422 58.470001220703125,116.66999816894531 6.260000228881836,135.9600067138672 C-2.0899999141693115,139.0399932861328 -2.0899999141693115,150.9600067138672 6.260000228881836,154.0399932861328 C58.45000076293945,173.3300018310547 79.58000183105469,231.67999267578125 98.94000244140625,283.75 C102.02999877929688,292.0799865722656 113.97000122070312,292.0799865722656 117.05999755859375,283.75 C136.39999389648438,231.67999267578125 157.52999877929688,173.3300018310547 209.74000549316406,154.0399932861328 C218.08999633789062,150.9600067138672 218.08999633789062,139.0399932861328 209.74000549316406,135.9600067138672 C209.74000549316406,135.9600067138672 209.74000549316406,135.9600067138672 209.74000549316406,135.9600067138672z"></path></g></g></g></svg></div>
+
+    """
 
     with st.sidebar:
         st.image("data/stylumia_transparent.png", width=150)  # Add your logo file path
@@ -74,7 +142,7 @@ def main():
             "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
         )
 
-        clear_chat = st.button("Clear Chat")
+        clear_chat = custom_button("Clear Chat",color="#32cd32",height=40)
         if clear_chat:
             st.session_state.messages = []
 
@@ -89,19 +157,31 @@ def main():
 
     prompt = st.chat_input("Ask a question:")
 
+    st.markdown("""
+<style>.element-container:has(#title-after) + div title {
+ height:140px;
+ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+text-size:40px;
+font-weight:bold;
+text-color:green;                
+                      
+ }</style>""", unsafe_allow_html=True)
     
     if len(st.session_state.messages) == 0:
         placeholder = st.empty()  # Placeholder to hold and later clear the welcome text
+    
         with placeholder.container():
 
             st.title("")
             col001, col002, col003 = st.columns([3.5,4,1])
             with col002:
-                st.title("✨")
+                st.markdown(f"{svg}",unsafe_allow_html=True)
 
 
             col01, col02, col03 = st.columns([2,4,1])
             with col02:
+                st.markdown('<span id="title-after"></span>', unsafe_allow_html=True)
                 st.title("Hi! I'm Stylumia Sparks.")
             
             col11, col12, col13 = st.columns([2,4,1])
@@ -112,23 +192,46 @@ def main():
             st.title("")
             st.title("")
 
-
-            col1, col2 = st.columns(2)
             
+
+# Inject the CSS into the Streamlit app
+            
+            
+            col1, col2 = st.columns(2)
+            st.markdown("""
+<style>.element-container:has(#button-after) + div button {
+ height:110px;
+ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+text-size:20px;
+  display:flex;
+  width: 570px;
+  margin-left:75px;
+background-color:#e5ecf6;
+                      
+ }</style>""", unsafe_allow_html=True)
+
             with col1:
-                if st.button("give me lay of the land"):
-                    prompt = "give me lay of the land"
-                if st.button("what is my assortment mix"):
-                    prompt = "what is my assortment mix"
-                    
+                st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
+                if st.button("Give me an overview of Outdoor Lighting",use_container_width=True,type="secondary"):
+                    prompt = "Give me an overview of Outdoor Lighting"
+                st.empty()
+                st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
+                if st.button("Find attributes where I am under-indexed",use_container_width=True):
+                    prompt = "Find attributes where I am under-indexed"
+
+                st.empty()
             with col2:
-                if st.button("where am i under indexed compared to my competitor"):
-                    prompt = "where am i under indexed compared to my competitor"
-                if st.button("What are my top performing type across Rural US"):
-                    prompt = "What are my top performing type across Rural US"
+                st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
+                if st.button("Compare my assortment mix to the market",use_container_width=True):
+                    prompt = "Compare my assortment mix to the market"
+                    st.empty()
+                st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
+                if st.button("Find my top-performing attributes in Rural US",use_container_width=True):
+                    prompt = "Find my top-performing attributes in Rural US"
+                    st.empty()
     else:
         placeholder = st.empty()
-
 
 
     if prompt:
@@ -174,6 +277,7 @@ def main():
                                 #     with st.expander(message["name"]):
                                 #         st.write(message["input"])
                         elif "tool" in event:
+                            fig = None
                             with st.expander(event["tool"]):
                                 if event["tool"] == "python_env":
                                     st.markdown("### Code:")
@@ -197,17 +301,26 @@ def main():
                                             "source"
                                         ]["bytes"]
                                         st.image(Image.open(BytesIO(image_data)))
+                                        print(f"event_keys:{event.keys()}")
+                                        print(f"event_step:{event['step_response'].keys()}")
+                                        fig = event["metadata"]["fig"]
+                                        
+                                        
                                     else:
                                         st.caption(
                                             f'```\n{event["step_response"].get("text")}\n```'
                                         )
                                 else:
                                     st.write(event)
+                            if fig:
+                                st.plotly_chart(fig)
                         else:
                             st.write(event)
 
                     else:
                         st.write(event)
+                    
+                    
 
                 st.session_state.messages.append(
                     {

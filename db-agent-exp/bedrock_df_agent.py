@@ -720,17 +720,8 @@ class FileAgent:
             * always give directional advice instead of something like (increase sku by 7-10 items/10 percent increase)
         * Incase of a general question do 2 analysis one for A(me) and one for the market
         * avoid giving generic responses
-        * Plot charts where necessary only and not always
-        * whenever the question is asked about zip code , locations or store in that case create dataframe named df_map ,coloumns of df_map = [latitude , longitude , marker_size and marker_colour] its values would be based on zip code.It will be directly used by `st.map`, make sure values properly represent analysis.
-        
-        <<<
-        latitude and longitude corresponding to diffrent zip codes
-
-        zipcode , latitude , longitude
-        48162 , 41.9481 , -83.4003
-        63111 , 38.5582 , -90.25004
-        49418 , 42.8737 , -85.7769
-        >>>
+        * Plot charts where necessary only and not always. Always run relevant python code before calling the plotting tool
+    
 
         <<<
         Table Info:
@@ -854,11 +845,14 @@ Question:{input}"""
             observation_content = {"text": tool_result.get("observation")}
             if tool.name == "plot_generator":
                 try:
+                    
                     with open(tool_result.get("metadata")["image_path"], "rb") as f:
+                        
                         image_data = f.read()
                     observation_content = {
                         "image": {"format": "jpeg", "source": {"bytes": image_data}}
                     }
+                    fig = tool_result.get("metadata")["fig"]
                 except KeyError as e:
                     logger.error(f"Error in getting image data: {e}")
                     print(tool_result)
@@ -867,6 +861,7 @@ Question:{input}"""
                     tool_action=tool_action,
                     content=observation_content,
                     metadata=tool_result.get("metadata"),
+                    
                     status=status,
                 )
             )

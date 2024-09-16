@@ -260,10 +260,10 @@ class PythonTool:
             # finally:
             #     # print("closing io buffer")
             #     io_buffer.close()
-
+            io_buffer = StringIO()
             try:
                 last_expr_str = None
-                io_buffer = StringIO()
+                
                 with redirect_stdout(io_buffer):
                     tree = ast.parse(code)
                     code_before_last_expr = ast.Module(
@@ -281,7 +281,7 @@ class PythonTool:
                 if last_expr_str:
                     with redirect_stdout(io_buffer):
                         exec(last_expr_str, self.globals, self.locals)
-                return io_buffer.getvalue()
+                return io_buffer.getvalue(),None
             finally:
                 io_buffer.close()
 
@@ -374,6 +374,7 @@ class PythonTool:
                     logger.warning("Code transformed due to dataframe creation")
 
             metadata["executed_code"] = execution_code
+            print(execution_code)
             str_log, ret = self.execute_code(execution_code)
             self.update_execution_history(code)
             metadata["ret"] = ret
@@ -387,7 +388,7 @@ class PythonTool:
         except Exception as e:
             metadata["error"] = True
             # save stack trace in a variable as string
-            metadata["stack_trace"] = logger.exception(e)
+            logger.exception(e)
             return {
                 "observation": f"{e.__class__.__name__}: {e}",
                 "metadata": metadata,

@@ -157,6 +157,7 @@ plot_variable: name of python variable containing the plot object
                 "metadata": {
                     "image_path": image_path,
                     "plot_gen_code": plot_gen_result["code"],
+                    "fig":fig
                 },
             }
 
@@ -190,6 +191,7 @@ plot_variable: name of python variable containing the plot object
             "metadata": {
                 "image_path": image_path,
                 "plot_gen_code": plot_gen_result["code"],
+                "fig":fig
             },
         }
 
