@@ -657,10 +657,11 @@ class FileAgent:
         >>>
         * Always Give final answer as tables (markdown format) which consists of both percentage and numerical answers
         * Whenever top seller is used in calculation, mention it in the explaination
-        * Make sure the headers you give for tables are related to retailer business (eg. SKU Count instead of count)
+        * Make sure the headers you give for tables are related to retailer business (eg. SKU Count instead of count, don't use underscore)
         * Keep the tables before textual analysis
         * Be Brief and clear in the response, use markdown
-        * Never give recommendataions,or areas of improvements until asked 
+        * Never give recommendataions,or areas of improvements until asked
+        * always give numbers along with the percentages in the table 
         <<<
 
         Data Approach Instruction
@@ -720,7 +721,10 @@ class FileAgent:
             * always give directional advice instead of something like (increase sku by 7-10 items/10 percent increase)
         * Incase of a general question do 2 analysis one for A(me) and one for the market
         * avoid giving generic responses
-        * Plot charts where necessary only and not always. Always run relevant python code before calling the plotting tool
+        * Plot charts whereever possible. Always run relevant python code before calling the plotting tool
+        * Always round the results to 2 decimal places in intermediate and final steps
+        * Always keep counts along with the percentages
+        * make headings more intuitive for a business person
     
 
         <<<
