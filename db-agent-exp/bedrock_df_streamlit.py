@@ -78,7 +78,7 @@ def custom_button(label, color, width=110, height=40):
     
     # Display the button and handle the click event
     if st.markdown(button_html, unsafe_allow_html=True):
-        return False
+        return True
     return False
 
 
@@ -180,7 +180,7 @@ def main():
     <style>
     /* Adjust the chat input box dimensions */
     div[data-testid="stChatInput"] {
-        height: 67px;
+        height: 44px;
         width: 100%;
         position: relative;
     }
