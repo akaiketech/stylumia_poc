@@ -117,7 +117,8 @@ def main():
 <style>.element-container:has(#button-file) + div button {
 
     height: 40px;
-    width: 100%                
+    width: 100%;
+    font-size: 18px;               
     border-radius: 10px;
     border-color:white;
     background-color:#281d36                    
