@@ -113,26 +113,40 @@ def main():
     with st.sidebar:
         st.image("logo_images/logo-cropped.png", width=150)  # Add your logo file path
         st.write("Table Selection")
-        selected_tables = st.multiselect(
-            "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
-        )
+        st.markdown("""
+<style>.element-container:has(#button-file) + div button {
+
+    height: 40px;
+    width: 100%                
+    border-radius: 10px;
+    border-color:white;
+    background-color:#281d36                    
+ }</style>""", unsafe_allow_html=True)
+        
+        st.markdown('<span id="button-file"></span>', unsafe_allow_html=True)
+        st.button("outdoor_lighting_products_renamed_zipcode")
+        # selected_tables = st.multiselect(
+        #     "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
+        # )
         
         st.markdown("""
 <style>.element-container:has(#button-clear) + div button {
 
     height: 40px;
     border-radius: 10px;
-    background-color:#92B9E5                    
+    border-color: white;
+    background-color:  #595063;
+    border-opacity: 60%;                   
  }</style>""", unsafe_allow_html=True)
         st.markdown('<span id="button-clear"></span>', unsafe_allow_html=True)
         clear_chat = st.button("Clear Chat")
         if clear_chat:
             st.session_state.messages = []
 
-    if not selected_tables:
-        return
+    # if not selected_tables:
+    #     return
 
-    data_config, table_retriever = load_table_data(selected_tables)
+    data_config, table_retriever = load_table_data(["outdoor_lighting_products_renamed_zipcode"])
 
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
@@ -231,8 +245,8 @@ def main():
 
             with col1:
                 st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
-                if st.button("Give me an overview of Outdoor Lighting",use_container_width=True,type="secondary"):
-                    prompt = "Give me an overview of Outdoor Lighting"
+                if st.button("Give me an overview of outdoor lighting assortment",use_container_width=True,type="secondary"):
+                    prompt = "Give me an overview of outdoor lighting assortment"
                 st.empty()
                 st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
                 if st.button("Find attributes where I am under-indexed",use_container_width=True):
@@ -296,7 +310,8 @@ def main():
                                 #         st.write(message["input"])
                         elif "tool" in event:
                             fig = None
-                            with st.expander(event["tool"]):
+
+                            with st.expander("Analysis"):
                                 if event["tool"] == "python_env":
                                     st.markdown("### Code:")
                                     st.code(event["tool_input"]["code"])
