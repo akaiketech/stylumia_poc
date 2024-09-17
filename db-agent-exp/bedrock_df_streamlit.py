@@ -26,7 +26,7 @@ SUPPORTED_TABLES = [
 ]
 
 # Set up page title and layout
-st.set_page_config(page_title="Stylumia Sparks", layout="wide")
+st.set_page_config(page_title="Stylumia Sparks", layout="wide",page_icon="logo_images/file1.png")
 
 
 
@@ -158,7 +158,7 @@ def main():
 '''
 
     with st.sidebar:
-        st.image("data/logo-cropped.png", width=150)  # Add your logo file path
+        st.image("logo_images/logo-cropped.png", width=150)  # Add your logo file path
         st.write("Table Selection")
         selected_tables = st.multiselect(
             "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
