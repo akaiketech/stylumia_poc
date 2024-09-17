@@ -20,9 +20,6 @@ set_llm_cache(SQLiteCache(database_path="./temp_folder/llm_cache.sqlite.db"))
 
 SUPPORTED_TABLES = [
     "outdoor_lighting_products_renamed_zipcode"
-    # "customer_support",
-    # "product_category_sku_analysis",
-    # "stylumia_all_data"
 ]
 
 # Set up page title and layout
@@ -43,50 +40,6 @@ st.set_page_config(page_title="Stylumia Sparks", layout="wide",page_icon="logo_i
 
 # st.map(df_map, latitude="col1", longitude="col2", size="col3", color="col4")
 
-
-def custom_button(label, color, width=110, height=40):
-    # Apply custom CSS to style the button
-    button_style = f"""
-    <style>
-    .custom-button {{
-        background-color: {color};
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: flex;
-        text:center;
-        align-items:center;
-        justify-content:center;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 5px;
-        width: {width}px; /* Set custom width */
-        height: {height}px; /* Set custom height */
-        line-height: {height}px; /* Center text vertically */
-        text-align: center; /* Center text horizontally */
-    }}
-    </style>
-    """
-    # Create a custom button with the specified style
-    button_html = f"""
-    {button_style}
-    <button class="custom-button">{label}</button>
-    """
-    
-    # Display the button and handle the click event
-    if st.markdown(button_html, unsafe_allow_html=True):
-        return False
-    return False
-
-
-
-
-
-
-
 @st.cache_resource
 def load_table_data(selected_tables):
     data_config = []
@@ -97,7 +50,7 @@ def load_table_data(selected_tables):
         data_config.append((df, df_metadata))
     table_retriever = DataFrameMetadataVectorRetriever(data_config)
     return data_config, table_retriever
-
+   
 
 def main():
     # st.title("Analytics Chat App")
@@ -163,8 +116,16 @@ def main():
         selected_tables = st.multiselect(
             "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
         )
+        
+        st.markdown("""
+<style>.element-container:has(#button-clear) + div button {
 
-        clear_chat = custom_button("Clear Chat",color="#A61A67",height=40)
+    height: 40px;
+    border-radius: 10px;
+    background-color:#92B9E5                    
+ }</style>""", unsafe_allow_html=True)
+        st.markdown('<span id="button-clear"></span>', unsafe_allow_html=True)
+        clear_chat = st.button("Clear Chat")
         if clear_chat:
             st.session_state.messages = []
 
@@ -180,7 +141,7 @@ def main():
     <style>
     /* Adjust the chat input box dimensions */
     div[data-testid="stChatInput"] {
-        height: 67px;
+        height: 44px;
         width: 100%;
         position: relative;
     }
@@ -233,7 +194,6 @@ def main():
         {svg}</div>''', unsafe_allow_html=True)
 
 
-            st.markdown("<h1 style='text-align: center'>Hi! I'm Stylumia Sparks.</h1>", unsafe_allow_html=True)
             
             
 
@@ -370,7 +330,7 @@ def main():
                                         )
                                 else:
                                     st.write(event)
-                            if fig:
+                            if fig and fig.data != ():
                                 st.plotly_chart(fig)
                         else:
                             st.write(event)
