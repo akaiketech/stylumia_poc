@@ -130,10 +130,32 @@ def main():
     """,
     unsafe_allow_html=True
 )
-    svg ="""<div>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 526 526" width="526" height="526" preserveAspectRatio="xMidYMid slice" style="display:flex; align-item:center; justify-content:center; width: 30%; height: 30%;margin-left:-40px; transform: translate3d(0px, 0px, 0px); content-visibility: visible;"><defs><clipPath id="__lottie_element_14"><rect width="526" height="526" x="0" y="0"></rect></clipPath><clipPath id="__lottie_element_16"><path d="M0,0 L526,0 L526,526 L0,526z"></path></clipPath></defs><g clip-path="url(#__lottie_element_14)"><g clip-path="url(#__lottie_element_16)" transform="matrix(1,0,0,1,155,118)" opacity="0.9763476471263042" style="display: block;"><g transform="matrix(1,0,0,1,0,0)" opacity="0.9763476471263042" style="display: block;"><path fill="rgb(255,255,255)" fill-opacity="0" d=" M0,0 C0,0 216,0 216,0 C216,0 216,290 216,290 C216,290 0,290 0,290 C0,290 0,0 0,0z"></path></g><g transform="matrix(1,0,0,1,0,0)" opacity="1" style="display: block;"><path fill="rgb(213,29,137)" fill-opacity="1" d=" M209.74000549316406,135.9600067138672 C157.5500030517578,116.66999816894531 136.4199981689453,58.31999969482422 117.05999755859375,6.25 C113.97000122070312,-2.0799999237060547 102.02999877929688,-2.0799999237060547 98.94000244140625,6.25 C79.5999984741211,58.31999969482422 58.470001220703125,116.66999816894531 6.260000228881836,135.9600067138672 C-2.0899999141693115,139.0399932861328 -2.0899999141693115,150.9600067138672 6.260000228881836,154.0399932861328 C58.45000076293945,173.3300018310547 79.58000183105469,231.67999267578125 98.94000244140625,283.75 C102.02999877929688,292.0799865722656 113.97000122070312,292.0799865722656 117.05999755859375,283.75 C136.39999389648438,231.67999267578125 157.52999877929688,173.3300018310547 209.74000549316406,154.0399932861328 C218.08999633789062,150.9600067138672 218.08999633789062,139.0399932861328 209.74000549316406,135.9600067138672 C209.74000549316406,135.9600067138672 209.74000549316406,135.9600067138672 209.74000549316406,135.9600067138672z"></path></g></g></g></svg></div>
-
-    """
+    svg ="""<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 526 526" width="200" height="200" preserveAspectRatio="xMidYMid slice" style="width: 150px; height: 150px; transform: translate3d(0px, 0px, 0px); content-visibility: visible;">
+  <defs>
+    <clipPath id="__lottie_element_14">
+      <rect width="526" height="526" x="0" y="0"></rect>
+    </clipPath>
+    <clipPath id="__lottie_element_16">
+      <path d="M0,0 L526,0 L526,526 L0,526z"></path>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#__lottie_element_14)">
+    <g clip-path="url(#__lottie_element_16)" transform="matrix(1,0,0,1,155,118)" opacity="0.9763476471263042" style="display: block;">
+      <g transform="matrix(1,0,0,1,0,0)" opacity="0.9763476471263042" style="display: block;">
+        <path fill="rgb(255,255,255)" fill-opacity="0" d=" M0,0 C0,0 216,0 216,0 C216,0 216,290 216,290 C216,290 0,290 0,290 C0,290 0,0 0,0z"></path>
+      </g>
+      <g transform="matrix(1,0,0,1,0,0)" opacity="1" style="display: block;">
+        <path fill="rgb(213,29,137)" fill-opacity="1" d=" M209.74000549316406,135.9600067138672 C157.5500030517578,116.66999816894531 136.4199981689453,58.31999969482422 117.05999755859375,6.25 C113.97000122070312,-2.0799999237060547 102.02999877929688,-2.0799999237060547 98.94000244140625,6.25 C79.5999984741211,58.31999969482422 58.470001220703125,116.66999816894531 6.260000228881836,135.9600067138672 C-2.0899999141693115,139.0399932861328 -2.0899999141693115,150.9600067138672 6.260000228881836,154.0399932861328 C58.45000076293945,173.3300018310547 79.58000183105469,231.67999267578125 98.94000244140625,283.75 C102.02999877929688,292.0799865722656 113.97000122070312,292.0799865722656 117.05999755859375,283.75 C136.39999389648438,231.67999267578125 157.52999877929688,173.3300018310547 209.74000549316406,154.0399932861328 C218.08999633789062,150.9600067138672 218.08999633789062,139.0399932861328 209.74000549316406,135.9600067138672 C209.74000549316406,135.9600067138672 209.74000549316406,135.9600067138672 209.74000549316406,135.9600067138672z"></path>
+      </g>
+    </g>
+  </g>
+</svg>
+ """
+    svg_code = '''
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+</svg>
+'''
 
     with st.sidebar:
         st.image("data/logo-cropped.png", width=150)  # Add your logo file path
@@ -142,7 +164,7 @@ def main():
             "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
         )
 
-        clear_chat = custom_button("Clear Chat",color="#32cd32",height=40)
+        clear_chat = custom_button("Clear Chat",color="#A61A67",height=40)
         if clear_chat:
             st.session_state.messages = []
 
@@ -159,7 +181,7 @@ def main():
     /* Adjust the chat input box dimensions */
     div[data-testid="stChatInput"] {
         height: 67px;
-        width: 1200px;
+        width: 100%;
         position: relative;
     }
     
@@ -168,6 +190,14 @@ def main():
         height: 100%;
         width: calc(100% - 40px); /* Adjust width to leave space for the arrow */
         padding-right: 40px; /* Padding to ensure text doesn't overlap with arrow */
+        border-color: transparent !important;
+    }
+    /* Remove red border on focus and active state */
+    div[data-testid="stChatInput"] input:focus, 
+    div[data-testid="stChatInput"] input:active {
+        border-color: transparent !important;
+        box-shadow: none !important; /* Remove any shadow effect */
+        outline: none !important; /* Ensure no outline appears */
     }
 
     /* Style the chat input enter arrow */
@@ -179,21 +209,15 @@ def main():
         fill: #60a8ff; /* Arrow color */
         width: 24px; /* Adjust size as needed */
         height: 24px; /* Adjust size as needed */
+        border-color: transparent !important;
+    }
+    div[data-baseweb="input"] > div {
+        border-color: transparent !important;
     }
     </style>
     """, unsafe_allow_html=True)
-    prompt = st.chat_input("Ask a question:")
+    prompt = st.chat_input("How can Sparks help you today with assortment?")
 
-    st.markdown("""
-<style>.element-container:has(#title-after) + div title {
- height:140px;
- font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-text-size:40px;
-font-weight:bold;
-text-color:green;                
-                      
- }</style>""", unsafe_allow_html=True)
     
     if len(st.session_state.messages) == 0:
         placeholder = st.empty()  # Placeholder to hold and later clear the welcome text
@@ -201,19 +225,17 @@ text-color:green;
         with placeholder.container():
 
             st.title("")
-            col001, col002, col003 = st.columns([3.5,4,1])
-            with col002:
-                st.markdown(f"{svg}",unsafe_allow_html=True)
-
-
-            col01, col02, col03 = st.columns([2,4,1])
-            with col02:
-                st.markdown('<span id="title-after"></span>', unsafe_allow_html=True)
-                st.title("Hi! I'm Stylumia Sparks.")
             
-            col11, col12, col13 = st.columns([2,4,1])
-            with col12:
-                st.subheader("What can I do for you today?")
+            
+            
+            st.markdown(f'''
+    <div style="display: flex; justify-content: center; align-items: center;">
+        {svg}</div>''', unsafe_allow_html=True)
+
+
+            st.markdown("<h1 style='text-align: center'>Hi! I'm Stylumia Sparks.</h1>", unsafe_allow_html=True)
+            
+            
 
             # Vertical space
             st.title("")
@@ -225,9 +247,11 @@ text-color:green;
             
             
             col1, col2 = st.columns(2)
+
+
             st.markdown("""
 <style>.element-container:has(#button-after) + div button {
-  width: 411px;
+  width: 100%;
     height: 73px;
     border-radius: 10px;
     border: 1px solid rgba(124, 124, 150, 0.1);
@@ -241,6 +265,7 @@ text-color:green;
     font-weight: 500;
     line-height: normal;
     opacity: 0.8;
+    align-self:center;
                       
  }</style>""", unsafe_allow_html=True)
 

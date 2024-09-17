@@ -720,7 +720,8 @@ class FileAgent:
             * always give directional advice instead of something like (increase sku by 7-10 items/10 percent increase)
         * Incase of a general question do 2 analysis one for A(me) and one for the market
         * avoid giving generic responses
-        * Plot charts where necessary only and not always. Always run relevant python code before calling the plotting tool
+        * Plot charts whereever possible. Always run relevant python code before calling the plotting tool
+        * Always round the results to 2 decimal places in intermediate and final steps
     
 
         <<<
