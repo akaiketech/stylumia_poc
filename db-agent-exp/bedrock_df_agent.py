@@ -662,6 +662,11 @@ class FileAgent:
         * Be Brief and clear in the response, use markdown
         * Never give recommendataions,or areas of improvements until asked
         * always give numbers along with the percentages in the table 
+        * Never use pd.concat, always use pd.merge instead
+        *Always give me a clickable links along with the products when giving recommendation in the final output 
+            * user should be able to click it and visit the page
+
+
         <<<
 
         Data Approach Instruction
@@ -725,6 +730,10 @@ class FileAgent:
         * Always round the results to 2 decimal places in intermediate and final steps
         * Always keep counts along with the percentages
         * make headings more intuitive for a business person
+        * always make sure to drop duplicate columns in a df in any intermediate step, using df = df.loc[:,~df.columns.duplicated()].copy()
+        * Always consider whitespaces column whnenever user has asked for product or brand level recommendation
+        * Always give links along with the products when giving recommendation
+
     
 
         <<<
