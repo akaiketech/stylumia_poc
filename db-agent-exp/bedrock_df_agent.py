@@ -732,6 +732,7 @@ class FileAgent:
         * make headings more intuitive for a business person
         * always make sure to drop duplicate columns in a df in any intermediate step, using df = df.loc[:,~df.columns.duplicated()].copy()
         * Always consider whitespaces column whnenever user has asked for product or brand level recommendation
+        * Whenever user has asked about assortment mix always give me product recommendation also
         * Always give links along with the products when giving recommendation
 
     

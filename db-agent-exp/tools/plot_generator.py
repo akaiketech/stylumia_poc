@@ -71,12 +71,12 @@ len(df)
 
 execute python code to create plotly plot using the instruction provided
 
-Take extra care in making the plot aesthetically pleasing
+Take extra care in making the plot aesthetically pleasing 
 Always preser light theme for the charts
 Only create the plot object do not show the plot (i.e do not execute .show())
 Do not attempt to create the variable `df` again, start execution after the pre-executed code.
 
-return JSON output to 2 keys `code` & `plot_variable`
+Always return JSON output to 2 keys `code` & `plot_variable`
 
 plot_variable: name of python variable containing the plot object
 """
@@ -165,7 +165,7 @@ plot_variable: name of python variable containing the plot object
             [
                 (
                     "system",
-                    "Assume the user is blind & generate observation for the question based on graph image",
+                    "Assume the user is blind & generate graph understanding and observation for the question based on graph image",
                 ),
                 HumanMessage(
                     content=[
