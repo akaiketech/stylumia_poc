@@ -125,7 +125,7 @@ def main():
  }</style>""", unsafe_allow_html=True)
         
         st.markdown('<span id="button-file"></span>', unsafe_allow_html=True)
-        st.button("outdoor_lighting_products_renamed_zipcode")
+        st.button("Outdoor Lighting")
         # selected_tables = st.multiselect(
         #     "Select Table", SUPPORTED_TABLES, default=SUPPORTED_TABLES[0]
         # )
