@@ -72,7 +72,8 @@ len(df)
 execute python code to create plotly plot using the instruction provided
 
 Take extra care in making the plot aesthetically pleasing 
-Always preser light theme for the charts
+Never plot stacked bar charts. Instead of stacked bar charts use grouped bar charts
+Always prefer light theme for the charts
 Only create the plot object do not show the plot (i.e do not execute .show())
 Do not attempt to create the variable `df` again, start execution after the pre-executed code.
 

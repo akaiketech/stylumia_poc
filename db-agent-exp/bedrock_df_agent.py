@@ -173,7 +173,8 @@ Your task is to analyze this information and produce a JSON output with three ke
 2. Rephrase the question:
    - Create a standalone version of the question from the user's perspective.
    - Incorporate any context from previous messages that's necessary to understand the question.
-   - Ensure the rephrased question is clear and complete, without requiring additional context to understand.
+   - Ensure the rephrased question is clear and complete, without requiring additional context to understand. 
+   - in case overview or lay of the land is mentioned always include comparision with the market to it 
 
 3. Summarize relevant history:
    - Review the message history and identify information relevant to the rephrased question.
@@ -284,7 +285,7 @@ def clarify_question(
     <<<
 
     ### Key Definitions:
-    ** Lay of the land**: This referes to the assortment mix of all the retailers in the dataset
+    ** Lay of the land**: This referes to the assortment mix of all the retailers in the dataset, a variation of this is overview of assortment
     **Assortment Across an Attribute:** This refers to the distribution of products across categories within a specific attribute. When asked about the assortment, generate a pivot table with the attribute categories as the index and retailer names as the columns. The values should represent the count of items in each category. Additionally, reset the index so that the attribute categories appear as a standard column in the DataFrame.
     
     **Assortment Across key Attributes:** Generate the individual assortments across the attributes - Type, Color Changing, Power Source and concatenate all the pivot tables and provide me a concatenated data **Assortment Across Categories:** Generate the individual assortments across the Categorical columns - Type, Color Changing, Power Source and concatenate all the pivot tables and provide me a concatenated data
@@ -638,6 +639,7 @@ class FileAgent:
         * Never use disk operations to save or load data, for pandas dataframes use the data already loaded in memory
         * avoid using print statements, instead in the python code list the dataframe/variable at the end of the code (it will get printed automatically)
         * Do not import standard libraries, assume those are already imported
+        
         <<<
 
         Matching Values Tool Instructions:
@@ -665,6 +667,8 @@ class FileAgent:
         * Never use pd.concat, always use pd.merge instead
         *Always give me a clickable links along with the products when giving recommendation in the final output 
             * user should be able to click it and visit the page
+            * if links are not present in the analysis dataframe then don't display links/url
+
 
 
         <<<
@@ -672,7 +676,8 @@ class FileAgent:
         Data Approach Instruction
         >>>
         ### Key Definitions:
-        ** Lay of the land**: This referes to the assortment mix of all the retailers in the dataset of Type attribute 
+        ** Lay of the land**: This referes to the assortment mix of all the retailers in the dataset of Type attribute, other variations could be lay of the land
+        **Overview of assortment**: this refers to assortment mix comparision across different players in the market, so you must consider the market and compare retailer A with it
         **Assortment Across an Attribute:** This refers to the distribution of products across categories within a specific attribute. When asked about the assortment, generate a pivot table with the attribute categories as the index and retailer names as the columns. The values should represent the count of items in each category. Additionally, reset the index so that the attribute categories appear as a standard column in the DataFrame.
         For each retailer, create two additional columns:
         Percentage of Total Products: This column should reflect the percentage of the retailer's overall assortment that falls within each attribute category.
@@ -718,6 +723,7 @@ class FileAgent:
         <<<
         Other Important Instructions
         >>>
+        * in case of an overview of assortment or lay of the land kind of question always consider the market also.
         * Your Primary attribute is `Type`, make sure to always use this only, until and  unless a different attribute is specified.
         * Always give full table if the number of rows is less than 15
         * In case question is for over and under indexing make sure to compare for top selling products and mention it in your response
@@ -733,7 +739,8 @@ class FileAgent:
         * always make sure to drop duplicate columns in a df in any intermediate step, using df = df.loc[:,~df.columns.duplicated()].copy()
         * Always consider whitespaces column whnenever user has asked for product or brand level recommendation
         * Whenever user has asked about assortment mix always give me product recommendation also
-        * Always give links along with the products when giving recommendation
+        * Always give links along with the products when giving recommendation in the analysis table
+            *  if links are not present in the analysis dataframe then don't display links/url
 
     
 
